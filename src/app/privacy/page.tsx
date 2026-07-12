@@ -13,10 +13,10 @@ export default function PrivacyPage() {
   return (
     <Section tone="paper">
       <div className="mx-auto max-w-3xl">
-        <span className="spec-label">Legal</span>
+        <span className="eyebrow">Legal</span>
         <h1 className="mt-3 text-display-md text-ink">Privacy Policy</h1>
         {/* TEMPLATE — have this reviewed for your jurisdiction before launch. */}
-        <p className="mt-3 rounded border border-dashed border-line bg-concrete px-4 py-3 font-mono text-xs uppercase tracking-wide text-steel">
+        <p className="mt-3 rounded border border-dashed border-line bg-concrete px-4 py-3 text-xs font-medium text-steel">
           Template — review with a professional and tailor to your business &amp; region before publishing.
         </p>
 

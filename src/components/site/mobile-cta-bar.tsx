@@ -1,19 +1,15 @@
 import { Phone } from "lucide-react";
 import { site, siteStatus } from "@/config/site";
 
-/**
- * Sticky call/quote bar on mobile only. When a phone number is configured it
- * shows tap-to-call + quote; otherwise it shows a single full-width quote CTA
- * (never a fake phone link). Bottom padding is added to <body> in layout.
- */
+/** Sticky call/plan bar on mobile only. Never shows a phone link that isn't real. */
 export function MobileCtaBar() {
   return (
-    <div className="fixed inset-x-0 bottom-0 z-40 border-t border-line bg-paper shadow-bar md:hidden">
+    <div className="fixed inset-x-0 bottom-0 z-40 border-t border-line bg-paper/95 shadow-bar backdrop-blur md:hidden">
       <div className={`grid gap-2 p-2.5 ${siteStatus.hasPhone ? "grid-cols-2" : "grid-cols-1"}`}>
         {siteStatus.hasPhone ? (
           <a
             href={`tel:${site.contact.phoneHref}`}
-            className="inline-flex h-12 items-center justify-center gap-2 rounded border border-ink/20 font-medium text-ink"
+            className="inline-flex h-12 items-center justify-center gap-2 rounded border border-line font-semibold text-ink"
           >
             <Phone className="h-4 w-4" aria-hidden="true" />
             Call now
@@ -21,7 +17,7 @@ export function MobileCtaBar() {
         ) : null}
         <a
           href="/contact"
-          className="inline-flex h-12 items-center justify-center rounded bg-hivis px-3 text-center font-semibold text-ink"
+          className="inline-flex h-12 items-center justify-center rounded bg-ink px-3 text-center font-semibold text-paper"
           data-analytics="mobile_bar_website_plan"
         >
           Get my free website plan

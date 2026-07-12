@@ -103,11 +103,15 @@ no invented reviews, ever. Needs: quote, name, business, location, permission.
 
 | Image | Where it shows | If missing |
 | --- | --- | --- |
-| Founder photo | Homepage founder card + About page | Hidden (no empty frame) |
-| Hero image (`site.media.heroImage`) | Homepage hero | Hidden — hero becomes a clean full-width text layout |
-| Project screenshots | Portfolio | Project won't display properly |
+| Founder photo | Founder section + About page | Hidden — clean text-only layout, no empty frame |
+| Project screenshots (desktop + mobile) | Portfolio | Project won't display properly |
 
 Real photos only — your work, your crew, your finished sites. **No stock photos.**
+
+**Already done:** the logo, favicons, app icons, and social/Open Graph image are
+built from your official artwork and need nothing from you. See
+`public/brand/README.md`. The hero uses a custom brand composition rather than a
+photo, so no hero image is required.
 
 ---
 

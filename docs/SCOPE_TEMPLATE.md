@@ -7,7 +7,7 @@ Fill in with the client before any work starts. Shared and agreed in writing.
 - **Package:** Launch / Growth / Lead System
 - **Primary goal (one conversion):**
 - **Target launch date:**
-- **Price (agreed):**  |  **Financing:**  |  **Monthly care:**
+- **Price (agreed):**  |  **Payment plan:**  |  **Monthly care (optional):**
 
 ## Pages included
 - [ ] Home

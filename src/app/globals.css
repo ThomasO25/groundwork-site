@@ -6,7 +6,6 @@
   :root {
     --font-display: "Archivo", system-ui, sans-serif;
     --font-sans: "IBM Plex Sans", system-ui, sans-serif;
-    --font-mono: "IBM Plex Mono", ui-monospace, monospace;
   }
 
   html {
@@ -14,6 +13,7 @@
     -webkit-text-size-adjust: 100%;
   }
 
+  /* Honour the OS setting: no motion, no smooth scrolling, no reveals. */
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;
@@ -22,6 +22,7 @@
     *::before,
     *::after {
       animation-duration: 0.001ms !important;
+      animation-delay: 0ms !important;
       animation-iteration-count: 1 !important;
       transition-duration: 0.001ms !important;
     }
@@ -32,20 +33,27 @@
     text-rendering: optimizeLegibility;
   }
 
-  h1, h2, h3, h4 {
+  h1,
+  h2,
+  h3,
+  h4 {
     @apply font-display;
     text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
   }
 
   /* Visible, high-contrast keyboard focus everywhere. */
   :focus-visible {
     outline: 2px solid theme("colors.ink");
     outline-offset: 2px;
-    border-radius: 2px;
+    border-radius: 4px;
   }
 
   ::selection {
-    background: theme("colors.hivis");
+    background: theme("colors.sand");
     color: theme("colors.ink");
   }
 }
@@ -56,16 +64,28 @@
     @apply mx-auto w-full max-w-container px-5 sm:px-6 lg:px-8;
   }
 
-  /* Signature: monospaced "spec label" eyebrow with a hi-vis tick. */
-  .spec-label {
-    @apply inline-flex items-center gap-2 font-mono text-xs font-medium uppercase tracking-[0.18em] text-steel;
+  /*
+   * Section eyebrow. Replaces the old monospace, all-caps "spec label".
+   * Sentence case, body font, with one small angular tick whose 45° cut echoes
+   * the notch in the G monogram — the site's only decorative motif.
+   */
+  .eyebrow {
+    @apply inline-flex items-center gap-2.5 text-sm font-semibold text-steel;
   }
-  .spec-label::before {
+  .eyebrow::before {
     content: "";
-    @apply inline-block h-3 w-[3px] bg-hivis;
+    @apply inline-block h-3 w-3 bg-gold;
+    clip-path: polygon(0 0, 100% 0, 100% 55%, 55% 100%, 0 100%);
   }
-  /* On dark sections the label text lightens. */
-  .spec-label--dark {
-    @apply text-white/60;
+  .eyebrow--dark {
+    @apply text-sand/80;
+  }
+  .eyebrow--dark::before {
+    @apply bg-sand;
+  }
+
+  /* The same angular motif, used sparingly as a standalone detail. */
+  .notch {
+    clip-path: polygon(0 0, 100% 0, 100% 55%, 55% 100%, 0 100%);
   }
 }

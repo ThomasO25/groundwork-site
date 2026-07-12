@@ -25,7 +25,7 @@ flat — every commercial page is one click from the header.
   /services/website-launch    SVC-01 · starter site
   /services/growth-website    SVC-02 · multi-page marketing site
   /services/lead-system       SVC-03 · site + automation/booking/CRM
-/pricing              Transparent tiers + what's always included + financing/care
+/pricing              Starting prices + what's always included + payment plans / optional care
 /work                 Portfolio (placeholder projects, clearly labeled)
 /about                Studio story, values, who you're working with
 /faq                  Objection-handling: cost, timeline, ownership, process
@@ -95,8 +95,8 @@ self-selects by budget and need:
 | Code | Service | Starting price* | Care plan* | Best for |
 |------|---------|-----------------|-----------|----------|
 | SVC-01 | Website Launch | $1,500 | $75/mo | New/very small businesses needing a credible presence fast |
-| SVC-02 | Growth Website | $2,500–$3,500 | $150–$200/mo | Established businesses wanting more leads and content |
-| SVC-03 | Lead System | $4,000–$7,500 | $250–$500/mo | Businesses ready to automate calls, quotes, and booking |
+| Growth Website | Starting at $2,500 | Optional care | Established businesses wanting more pages, proof, and reach |
+| Lead System | Custom quote | Optional care | Businesses ready to handle more leads without dropping any |
 
 \* Placeholder pricing — set to your real numbers in `src/content/services.ts` and
 `src/content/pricing.ts`. Each service defines `summary`, `priceFrom`, `care`,
@@ -114,7 +114,7 @@ themselves. Every service page ends with the same two CTAs (get a quote / call).
   "Growth" plan visually featured as the recommended default.
 - **"Always included" grid** — nine baseline commitments (mobile-first, fast, secure,
   SEO basics, you own it, etc.) shown once so they don't clutter each tier.
-- **Financing & care explainers** — normalizes the monthly care plan and payment
+- **Payment-plan & care explainers** — one of each; care is always optional, and the
   options, reducing sticker shock.
 - **Honesty line** (`pricingNote`) — states that final price depends on scope and is
   confirmed in a quote. This sets expectations and protects the owner from being held

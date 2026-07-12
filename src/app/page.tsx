@@ -1,8 +1,9 @@
 import { Hero } from "@/components/sections/hero";
-import { TrustBar } from "@/components/sections/trust-bar";
+import { WhoWeHelp } from "@/components/sections/who-we-help";
 import { Benefits } from "@/components/sections/benefits";
 import { EntryOffer } from "@/components/sections/entry-offer";
 import { Process } from "@/components/sections/process";
+import { ServicesOverview } from "@/components/sections/services-overview";
 import { Founder } from "@/components/sections/founder";
 import { Testimonials } from "@/components/sections/testimonials";
 import { FaqSection } from "@/components/sections/faq-section";
@@ -21,15 +22,17 @@ export const metadata = buildMetadata({
 });
 
 /**
- * Homepage conversion flow:
- *   1. Hero              — the promise + the offer
- *   2. Real work         — proof, as high as possible (hidden until real projects exist)
- *   3. Benefits          — what it does for the business
- *   4. Simple entry offer— one clear starting price
- *   5. Process           — how it works, low pressure
- *   6. Founder           — who you're actually dealing with
- *   7. FAQ               — remove the last objections
- *   8. Final CTA
+ * Homepage flow:
+ *   1. Hero (+ honest responsive-design visual)
+ *   2. Who we help
+ *   3. Real work           — hidden until permitted projects exist
+ *   4. Benefits            — consolidated; replaced the old trust-bar + "why us"
+ *   5. The offer + price
+ *   6. Process
+ *   7. Services
+ *   8. Founder
+ *   9. FAQ
+ *  10. Final CTA
  */
 export default function HomePage() {
   const hasWork = getVisibleProjects().length > 0;
@@ -37,18 +40,15 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <TrustBar />
+      <WhoWeHelp />
 
-      {/* 2. Proof first — but only when real, permitted projects exist. An empty
-          or half-finished portfolio section would cost more trust than it earns,
-          so it is hidden entirely rather than shown unfinished. */}
       {hasWork ? (
-        <Section tone="paper">
-          <div className="flex flex-wrap items-end justify-between gap-4">
+        <Section tone="concrete">
+          <div className="flex flex-wrap items-end justify-between gap-6">
             <SectionHeader
               label="Real work"
               title="Sites built for businesses like yours"
-              intro="Real projects, real screenshots — published with each client's permission."
+              intro="Real projects and real screenshots — published with each client's permission."
             />
             <ButtonLink href="/work" variant="outline" data-analytics="home_view_all_work">
               See all projects
@@ -63,6 +63,7 @@ export default function HomePage() {
       <Benefits />
       <EntryOffer />
       <Process />
+      <ServicesOverview />
       <Founder />
       <Testimonials />
       <FaqSection />

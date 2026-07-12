@@ -17,7 +17,7 @@ export default function FaqPage() {
       <JsonLd data={faqJsonLd(faqs)} />
       <Section tone="paper" className="pb-4">
         <div className="max-w-3xl">
-          <span className="spec-label">FAQ</span>
+          <span className="eyebrow">FAQ</span>
           <h1 className="mt-3 text-display-lg text-ink">Frequently asked questions</h1>
           <p className="mt-5 text-lg leading-relaxed text-steel">
             The things owners ask us most. Still have a question? Reach out — we&apos;re glad to help.

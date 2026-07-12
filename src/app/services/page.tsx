@@ -17,11 +17,16 @@ export default function ServicesPage() {
     <>
       <Section tone="paper" className="pb-8">
         <div className="max-w-3xl">
-          <span className="spec-label">Services</span>
+          <span className="eyebrow">Services</span>
           <h1 className="mt-3 text-display-lg text-ink">Websites and systems that bring in work</h1>
           <p className="mt-5 text-lg leading-relaxed text-steel">
-            Every project is designed and built specifically for your business and your customers — never a
-            generic template. Choose the level that fits where you are now; each one is built to grow.
+            Every project is designed and built for your business and your customers — never a generic
+            template. Most businesses start with a Website Launch; the other two exist for when you outgrow
+            it.
+          </p>
+          <p className="mt-5 leading-relaxed text-steel">
+            <strong className="font-semibold text-ink">Not sure which one fits?</strong> Tell us about your
+            business and we&apos;ll recommend the simplest option that does the job.
           </p>
         </div>
       </Section>
@@ -31,7 +36,7 @@ export default function ServicesPage() {
           <div className="container-frame py-14 lg:py-20">
             <div className="grid gap-10 lg:grid-cols-[1fr_1.1fr] lg:items-start">
               <div>
-                <span className="flex h-11 w-11 items-center justify-center rounded bg-ink text-white">
+                <span className="flex h-11 w-11 items-center justify-center rounded bg-ink text-paper">
                   <s.icon className="h-5 w-5" aria-hidden="true" />
                 </span>
                 <h2 className="mt-5 text-display-md text-ink">{s.name}</h2>
@@ -39,7 +44,7 @@ export default function ServicesPage() {
 
                 <dl className="mt-6 space-y-3 border-t border-line pt-6">
                   <div>
-                    <dt className="font-mono text-[11px] uppercase tracking-wide text-steel">Price</dt>
+                    <dt className="text-xs font-medium text-steel">Price</dt>
                     <dd className="font-display text-2xl font-extrabold text-ink">{s.priceFrom}</dd>
                     {s.paymentPlan ? <dd className="text-sm font-medium text-ink">{s.paymentPlan}</dd> : null}
                     {s.care ? <dd className="mt-1 text-sm text-steel">{s.care}</dd> : null}
@@ -48,7 +53,7 @@ export default function ServicesPage() {
                     ) : null}
                   </div>
                   <div>
-                    <dt className="font-mono text-[11px] uppercase tracking-wide text-steel">Best for</dt>
+                    <dt className="text-xs font-medium text-steel">Best for</dt>
                     <dd className="mt-1 text-sm leading-relaxed text-ink">{s.bestFor}</dd>
                   </div>
                 </dl>
@@ -70,12 +75,12 @@ export default function ServicesPage() {
                 </div>
               </div>
 
-              <div className="rounded border border-line bg-white p-6 sm:p-7">
-                <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-steel">What&apos;s included</p>
+              <div className="rounded border border-line bg-surface p-6 sm:p-7">
+                <p className="text-xs font-semibold text-steel">What&apos;s included</p>
                 <ul className="mt-4 space-y-3">
                   {s.includes.map((f) => (
                     <li key={f} className="flex gap-3 text-[0.95rem] text-ink">
-                      <Check className="mt-0.5 h-4 w-4 shrink-0 text-hivis-deep" aria-hidden="true" />
+                      <Check className="mt-0.5 h-4 w-4 shrink-0 text-gold-deep" aria-hidden="true" />
                       <span>{f}</span>
                     </li>
                   ))}

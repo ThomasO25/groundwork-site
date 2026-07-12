@@ -89,8 +89,8 @@ real assets before launch. We never publish invented reviews, results, or creden
 33. **(required to quote)** Target launch date, and anything driving it (season, event,
     ad campaign, expiring current site).
 34. **(required to quote)** Budget range for the initial build:
-    - [ ] Under $2,000  - [ ] $2,000–$3,500  - [ ] $3,500–$7,500
-    - [ ] $7,500+  - [ ] Not sure — advise me
+    - [ ] Not sure yet — advise me  - [ ] $1,500–$2,500
+    - [ ] $2,500–$5,000  - [ ] $5,000+  - [ ] Prefer not to say
 35. Are you open to a **monthly care plan** (hosting, updates, security, small changes,
     support)? This keeps the site healthy and is how most of our clients operate.
 36. Who is the decision-maker, and who else needs to approve the design/copy?

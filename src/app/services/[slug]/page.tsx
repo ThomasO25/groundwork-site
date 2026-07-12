@@ -43,7 +43,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
       <JsonLd data={serviceJsonLd} />
 
       <Section tone="paper" className="pb-8">
-        <nav className="mb-6 font-mono text-xs uppercase tracking-wide text-steel" aria-label="Breadcrumb">
+        <nav className="mb-6 text-sm font-medium text-steel" aria-label="Breadcrumb">
           <Link href="/services" className="hover:text-ink">
             Services
           </Link>
@@ -52,12 +52,12 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
         </nav>
         <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
           <div>
-            <span className="spec-label">What we build</span>
+            <span className="eyebrow">What we build</span>
             <h1 className="mt-3 text-display-lg text-ink">{service.name}</h1>
             <p className="mt-5 max-w-2xl text-lg leading-relaxed text-steel">{service.summary}</p>
           </div>
-          <div className="rounded border border-line bg-concrete p-6">
-            <p className="font-mono text-[11px] uppercase tracking-wide text-steel">Price</p>
+          <div className="rounded-lg border border-line bg-surface p-7 shadow-soft">
+            <p className="text-xs font-medium text-steel">Price</p>
             <p className="mt-1 font-display text-3xl font-extrabold text-ink">{service.priceFrom}</p>
             {service.paymentPlan ? (
               <p className="mt-1 text-sm font-medium text-ink">{service.paymentPlan}</p>
@@ -95,7 +95,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
             <ul className="mt-6 space-y-3.5">
               {service.includes.map((f) => (
                 <li key={f} className="flex gap-3 text-[0.95rem] text-ink">
-                  <Check className="mt-0.5 h-5 w-5 shrink-0 text-hivis-deep" aria-hidden="true" />
+                  <Check className="mt-0.5 h-5 w-5 shrink-0 text-gold-deep" aria-hidden="true" />
                   <span>{f}</span>
                 </li>
               ))}
@@ -105,13 +105,13 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
             <h2 className="text-display-md text-ink">What you can expect</h2>
             <ul className="mt-6 space-y-4">
               {service.outcomes.map((o) => (
-                <li key={o} className="rounded border border-line bg-white p-5">
+                <li key={o} className="rounded border border-line bg-surface p-5">
                   <p className="text-[0.95rem] font-medium text-ink">{o}</p>
                 </li>
               ))}
             </ul>
-            <div className="mt-6 rounded border border-line bg-white p-5">
-              <p className="font-mono text-[11px] uppercase tracking-wide text-steel">Best for</p>
+            <div className="mt-6 rounded border border-line bg-surface p-5">
+              <p className="text-xs font-medium text-steel">Best for</p>
               <p className="mt-1.5 text-sm leading-relaxed text-ink">{service.bestFor}</p>
             </div>
           </div>
@@ -119,7 +119,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
 
         {/* Internal links to the other services */}
         <div className="mt-14 border-t border-line pt-8">
-          <p className="font-mono text-[11px] uppercase tracking-wide text-steel">Other services</p>
+          <p className="text-xs font-medium text-steel">Other services</p>
           <div className="mt-4 flex flex-wrap gap-3">
             {services
               .filter((s) => s.slug !== service.slug)

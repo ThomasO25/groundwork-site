@@ -13,6 +13,9 @@ export const siteUrl = (
   "http://localhost:3000"
 ).replace(/\/$/, "");
 
+/** Official Open Graph artwork, built from the Groundwork logo. */
+export const OG_IMAGE = "/brand/groundwork-og.png";
+
 /**
  * Build per-page metadata with sensible defaults, canonical URL, and Open Graph.
  * Pass a `path` (e.g. "/services") so canonical + OG url are correct.
@@ -37,12 +40,13 @@ export function buildMetadata({
       siteName: site.name,
       title,
       description,
-      // Uses app/opengraph-image.tsx unless a client provides real OG art.
+      images: [{ url: OG_IMAGE, width: 1200, height: 630, alt: `${site.name} — Web Studio` }],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
+      images: [OG_IMAGE],
     },
   } as Metadata;
 }

@@ -109,8 +109,8 @@ export function QuoteForm() {
 
   if (status === "success") {
     return (
-      <div className="rounded border border-line bg-white p-8 text-center">
-        <CheckCircle2 className="mx-auto h-10 w-10 text-hivis-deep" aria-hidden="true" />
+      <div className="rounded-lg border border-line bg-surface p-8 text-center shadow-soft">
+        <CheckCircle2 className="mx-auto h-11 w-11 text-gold-deep" aria-hidden="true" />
         <h2 className="mt-4 text-2xl font-bold text-ink">Got it — thank you</h2>
         <p className="mx-auto mt-3 max-w-md text-[0.95rem] leading-relaxed text-steel">
           We&apos;ll read through what you sent and get back to you with your free website plan, usually
@@ -119,7 +119,7 @@ export function QuoteForm() {
 
         {/* Booking is offered only when a scheduling link is configured. */}
         {siteStatus.hasBooking ? (
-          <div className="mx-auto mt-7 max-w-md rounded border border-line bg-concrete p-5">
+          <div className="mx-auto mt-7 max-w-md rounded-lg border border-line bg-concrete p-5">
             <p className="text-[0.95rem] font-semibold text-ink">Want to talk sooner?</p>
             <p className="mt-1 text-sm leading-relaxed text-steel">
               Grab a short introductory call at a time that suits you — 15 minutes, no sales pitch.
@@ -156,7 +156,7 @@ export function QuoteForm() {
       onSubmit={onSubmit}
       onInput={handleFirstInput}
       noValidate
-      className="rounded border border-line bg-white p-6 sm:p-8"
+      className="rounded-lg border border-line bg-surface p-6 shadow-soft sm:p-8"
     >
       {/* Honeypot: hidden from humans, catches bots. Do not remove. */}
       <div className="absolute left-[-9999px]" aria-hidden="true">

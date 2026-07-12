@@ -1,55 +1,46 @@
-import { Section, SectionHeader } from "@/components/ui/section";
+import { Section } from "@/components/ui/section";
 
 /**
- * The "what this actually does for your business" section.
- * Written for a busy owner, not a developer — every point is an outcome, never
- * a technology. No guarantees, no invented numbers.
+ * Consolidated from the old "trust bar" + "why us" + "benefits" sections, which
+ * all made overlapping claims. One list, in the owner's language, no cards.
  */
 const benefits: [string, string][] = [
-  [
-    "You look established",
-    "Customers judge you in seconds. A clean, professional site makes you look like the safe choice — before anyone picks up the phone.",
-  ],
-  [
-    "You get more calls",
-    "Your phone number is one tap away on every page, so someone standing in their driveway can reach you without hunting for it.",
-  ],
-  [
-    "You get more quote requests",
-    "A short, simple form that works on a phone. People tell you what they need, and it lands in your inbox.",
-  ],
-  [
-    "Customers can find you",
-    "We set up the basics properly so you show up when people nearby search for what you do.",
-  ],
-  [
-    "It saves you time",
-    "Requests arrive with the details you actually need, so you spend less time chasing people and more time on the job.",
-  ],
-  [
-    "No pressure, ever",
-    "A short conversation, a clear written plan, and a fixed starting price. You decide from there.",
-  ],
+  ["Look established", "Customers decide in seconds. A clean, professional site makes you the safe choice before anyone picks up the phone."],
+  ["Make it easy to call", "Your number is one tap away on every page — no hunting for it while standing in a driveway."],
+  ["Show your best work", "Photos of real jobs, laid out so people can actually see what you do."],
+  ["Get better quote requests", "A short form that works on a phone, asking for the details you actually need."],
+  ["Work properly on every phone", "Most people will find you on a phone. That's where we start, not where we compromise."],
+  ["Help nearby customers find you", "The local search basics set up properly, so the people down the road see you."],
+  ["Have someone there afterwards", "When your prices change or you add a service, you have someone to call."],
 ];
 
 export function Benefits() {
   return (
-    <Section tone="ink">
-      <SectionHeader
-        dark
-        label="Why it matters"
-        title="A website should bring you work — not just sit there"
-        intro="Most small-business sites are slow, hard to use on a phone, or clearly a template. Yours should do a job."
-      />
-      <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {benefits.map(([title, copy]) => (
-          <li key={title} className="rounded border border-line-dark bg-graphite p-6">
-            <span className="block h-[3px] w-8 bg-hivis" aria-hidden="true" />
-            <p className="mt-4 font-semibold text-white">{title}</p>
-            <p className="mt-2 text-sm leading-relaxed text-white/65">{copy}</p>
-          </li>
-        ))}
-      </ul>
+    <Section tone="concrete">
+      <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
+        <div className="lg:sticky lg:top-28 lg:self-start">
+          <span className="eyebrow">What it does for you</span>
+          <h2 className="mt-4 text-display-md text-ink">
+            A website should bring you work — not just sit there
+          </h2>
+          <p className="mt-5 max-w-prose leading-relaxed text-steel">
+            Most small-business sites are slow, awkward on a phone, or obviously a template. Yours should
+            do a job.
+          </p>
+        </div>
+
+        <dl className="divide-y divide-line border-t border-line">
+          {benefits.map(([title, copy]) => (
+            <div key={title} className="grid gap-1.5 py-5 sm:grid-cols-[0.8fr_1.2fr] sm:gap-6">
+              <dt className="flex items-start gap-2.5 font-display text-lg font-bold text-ink">
+                <span className="notch mt-2 h-2 w-2 shrink-0 bg-gold" aria-hidden="true" />
+                {title}
+              </dt>
+              <dd className="leading-relaxed text-steel">{copy}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
     </Section>
   );
 }
