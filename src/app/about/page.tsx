@@ -21,7 +21,7 @@ export default function AboutPage() {
   return (
     <>
       <Section tone="paper">
-        <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+        <div className={site.founder.photo ? "grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center" : "grid gap-12"}>
           <div>
             <span className="spec-label">About</span>
             {/*
@@ -39,15 +39,19 @@ export default function AboutPage() {
               your site, and every project gets the attention it deserves.
             </p>
             <p className="mt-4 text-lg leading-relaxed text-steel">
-              We focus on the things that actually bring in business: fast, mobile-first pages, clear calls
-              to action, and a solid local-SEO foundation — built on technology you own outright, with no
-              lock-in.
+              We focus on the things that actually bring in business: pages that load fast on a phone, an
+              obvious way to call or ask for a quote, and the local search basics done properly. And it&apos;s
+              yours — the site, the domain, the content. No lock-in.
             </p>
           </div>
+          {/* Optional photo. With none supplied this renders NOTHING in production
+              (no dashed frame, no instructions) and the copy sits full-width. */}
           <ImagePlaceholder
-            alt="A photo of you, your team, or your workspace"
+            src={site.founder.photo || undefined}
+            alt={site.founder.name ? `${site.founder.name}, ${site.name}` : "The person behind Groundwork"}
             label="Add a real photo — a headshot, your team, or your workspace builds trust."
             ratio="aspect-[4/5]"
+            sizes="(max-width: 1024px) 100vw, 40vw"
           />
         </div>
       </Section>

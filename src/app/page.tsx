@@ -1,13 +1,14 @@
 import { Hero } from "@/components/sections/hero";
 import { TrustBar } from "@/components/sections/trust-bar";
-import { ServicesOverview } from "@/components/sections/services-overview";
+import { Benefits } from "@/components/sections/benefits";
+import { EntryOffer } from "@/components/sections/entry-offer";
 import { Process } from "@/components/sections/process";
+import { Founder } from "@/components/sections/founder";
 import { Testimonials } from "@/components/sections/testimonials";
 import { FaqSection } from "@/components/sections/faq-section";
 import { CtaBand } from "@/components/sections/cta-band";
-import { Section } from "@/components/ui/section";
 import { PortfolioGrid } from "@/components/sections/portfolio-grid";
-import { SectionHeader } from "@/components/ui/section";
+import { Section, SectionHeader } from "@/components/ui/section";
 import { ButtonLink } from "@/components/ui/button";
 import { buildMetadata } from "@/lib/seo";
 import { site } from "@/config/site";
@@ -19,61 +20,50 @@ export const metadata = buildMetadata({
   path: "/",
 });
 
+/**
+ * Homepage conversion flow:
+ *   1. Hero              — the promise + the offer
+ *   2. Real work         — proof, as high as possible (hidden until real projects exist)
+ *   3. Benefits          — what it does for the business
+ *   4. Simple entry offer— one clear starting price
+ *   5. Process           — how it works, low pressure
+ *   6. Founder           — who you're actually dealing with
+ *   7. FAQ               — remove the last objections
+ *   8. Final CTA
+ */
 export default function HomePage() {
   const hasWork = getVisibleProjects().length > 0;
+
   return (
     <>
       <Hero />
       <TrustBar />
-      <ServicesOverview />
 
-      {/* Why us — plain, credible, no invented claims */}
-      <Section tone="ink">
-        <div className="grid gap-12 lg:grid-cols-[1fr_1fr] lg:items-center">
-          <div>
-            <span className="spec-label spec-label--dark">Why owners choose us</span>
-            <h2 className="mt-3 text-display-md text-white">
-              Built for leads — not to look like everyone else&apos;s website
-            </h2>
-            <p className="mt-4 text-lg leading-relaxed text-white/70">
-              Most small-business sites are slow, hard to use on a phone, or clearly a template. We design
-              each site around your customers and the actions that bring you work: calling, requesting a
-              quote, and booking.
-            </p>
-          </div>
-          <ul className="grid gap-4 sm:grid-cols-2">
-            {[
-              ["Made to convert", "Clear calls-to-action, tap-to-call, and fast quote forms on every page."],
-              ["Genuinely fast", "Lightweight, statically generated pages that load quickly on any connection."],
-              ["Found locally", "A real local-SEO foundation so the right customers in your area find you."],
-              ["Easy to maintain", "Edit content in one place, or hand it to us — no technical work required."],
-            ].map(([t, d]) => (
-              <li key={t} className="rounded border border-line-dark bg-graphite p-5">
-                <p className="font-semibold text-white">{t}</p>
-                <p className="mt-1.5 text-sm leading-relaxed text-white/60">{d}</p>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </Section>
-
-      <Process />
-
-      {/* Recent work preview — only shown once real, permitted projects exist. */}
+      {/* 2. Proof first — but only when real, permitted projects exist. An empty
+          or half-finished portfolio section would cost more trust than it earns,
+          so it is hidden entirely rather than shown unfinished. */}
       {hasWork ? (
         <Section tone="paper">
           <div className="flex flex-wrap items-end justify-between gap-4">
-            <SectionHeader label="Recent work" title="Sites built to get results" />
-            <ButtonLink href="/work" variant="outline">
-              View all work
+            <SectionHeader
+              label="Real work"
+              title="Sites built for businesses like yours"
+              intro="Real projects, real screenshots — published with each client's permission."
+            />
+            <ButtonLink href="/work" variant="outline" data-analytics="home_view_all_work">
+              See all projects
             </ButtonLink>
           </div>
           <div className="mt-12">
-            <PortfolioGrid limit={3} />
+            <PortfolioGrid limit={2} />
           </div>
         </Section>
       ) : null}
 
+      <Benefits />
+      <EntryOffer />
+      <Process />
+      <Founder />
       <Testimonials />
       <FaqSection />
       <CtaBand />

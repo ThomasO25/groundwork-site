@@ -4,33 +4,33 @@ import { Section, SectionHeader } from "@/components/ui/section";
 const steps = [
   {
     n: "01",
-    title: "Quick call",
-    body: "We learn your business, your best jobs, and where your leads come from. No jargon, no pressure.",
+    title: "A short call",
+    body: "We learn your business, your best jobs, and where your work comes from now. No jargon, no pressure, no obligation.",
   },
   {
     n: "02",
-    title: "Written scope",
-    body: "You get a clear plan: pages, timeline, and price in writing before any work starts.",
+    title: "Your free website plan",
+    body: "You get a clear written plan — what your site should do, what it will include, the timeline, and the price — before you commit to anything.",
   },
   {
     n: "03",
     title: "Design & build",
-    body: "We design mobile-first around your customers and build a fast, secure site with your real content.",
+    body: "We design around your customers — starting with how it looks on a phone — and build it with your real photos and words.",
   },
   {
     n: "04",
-    title: "Launch & grow",
-    body: "We handle launch, submit your site to Google, and stay on to keep it running and bringing in work.",
+    title: "Launch & support",
+    body: "We handle the launch, get you listed with Google, and stay available afterwards to keep it running well.",
   },
 ];
 
 export function Process() {
   return (
-    <Section tone="concrete">
+    <Section tone="concrete" id="process">
       <SectionHeader
         label="How it works"
         title="A simple, no-surprises process"
-        intro="You always know what's happening, what it costs, and what's next."
+        intro="You always know what's happening, what it costs, and what's next. You can stop after the plan — it's yours either way."
       />
       <ol className="mt-12 grid gap-px overflow-hidden rounded border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
         {steps.map((s) => (

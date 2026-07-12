@@ -1,66 +1,96 @@
-import Link from "next/link";
-import { ArrowRight, ExternalLink } from "lucide-react";
+import Image from "next/image";
+import { ExternalLink } from "lucide-react";
 import { getVisibleProjects } from "@/content/portfolio";
-import { ImagePlaceholder } from "@/components/ui/image-placeholder";
 
 /**
- * Renders ONLY projects cleared for display (permissionToDisplay). When there
- * are none, shows an honest "projects being added" state instead of fake work.
+ * Renders ONLY projects cleared for display (permissionToDisplay).
+ * Returns null when there are none — callers decide what to show instead
+ * (the homepage hides its whole section; /work shows <WorkEmptyState />).
+ *
+ * Never renders an invented project, screenshot, or result.
  */
 export function PortfolioGrid({ limit }: { limit?: number }) {
   const all = getVisibleProjects();
   const items = limit ? all.slice(0, limit) : all;
-
-  if (items.length === 0) {
-    return (
-      <div className="rounded border border-dashed border-line bg-concrete px-6 py-14 text-center">
-        <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-steel">Portfolio</p>
-        <h3 className="mt-3 text-xl font-bold text-ink">Recent projects are being added</h3>
-        <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-steel">
-          We&apos;re putting together a showcase of recent work. In the meantime, we&apos;re happy to
-          walk you through relevant examples and references directly.
-        </p>
-        <Link
-          href="/contact"
-          className="mt-6 inline-flex items-center gap-2 rounded bg-hivis px-5 py-2.5 text-sm font-semibold text-ink hover:bg-hivis-deep"
-        >
-          Ask to see our work
-          <ArrowRight className="h-4 w-4" aria-hidden="true" />
-        </Link>
-      </div>
-    );
-  }
+  if (items.length === 0) return null;
 
   return (
-    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    <div className="grid gap-8 md:grid-cols-2">
       {items.map((p) => (
-        <figure key={p.slug} className="flex flex-col">
-          <ImagePlaceholder
-            src={p.desktopScreenshot}
-            alt={`${p.name} — ${p.industry} website`}
-            label="Add a real screenshot of the finished site."
-            ratio="aspect-[16/10]"
-          />
-          <figcaption className="mt-4">
-            <div className="flex items-center justify-between gap-3">
-              <h3 className="font-bold text-ink">{p.name}</h3>
+        <figure key={p.slug} className="flex flex-col" data-analytics-portfolio={p.slug}>
+          <div className="relative">
+            {/* Desktop screenshot — the main visual. */}
+            {p.desktopScreenshot ? (
+              <div className="relative aspect-[16/10] overflow-hidden rounded border border-line bg-concrete">
+                <Image
+                  src={p.desktopScreenshot}
+                  alt={`${p.name} website, shown on desktop`}
+                  fill
+                  className="object-cover object-top"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+              </div>
+            ) : null}
+
+            {/* Real mobile screenshot, inset. Not a mockup — an actual capture. */}
+            {p.mobileScreenshot ? (
+              <div className="absolute -bottom-5 right-5 hidden w-[22%] overflow-hidden rounded border border-line bg-white shadow-bar sm:block">
+                <div className="relative aspect-[9/19]">
+                  <Image
+                    src={p.mobileScreenshot}
+                    alt={`${p.name} website, shown on a phone`}
+                    fill
+                    className="object-cover object-top"
+                    sizes="120px"
+                  />
+                </div>
+              </div>
+            ) : null}
+          </div>
+
+          <figcaption className={p.mobileScreenshot ? "mt-9" : "mt-5"}>
+            <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+              <h3 className="text-xl font-bold text-ink">{p.name}</h3>
               {p.liveUrl ? (
                 <a
                   href={p.liveUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 font-mono text-[11px] uppercase tracking-wide text-steel hover:text-ink"
+                  className="inline-flex items-center gap-1 text-sm font-medium text-ink hover:text-hivis-deep"
                 >
-                  Visit <ExternalLink className="h-3 w-3" aria-hidden="true" />
+                  Visit site
+                  <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
                 </a>
               ) : null}
             </div>
+
             <p className="mt-1 font-mono text-[11px] uppercase tracking-wide text-steel">
-              {p.industry} · {p.location}
+              {[p.industry, p.location].filter(Boolean).join(" · ")}
             </p>
-            <p className="mt-2 text-sm leading-relaxed text-steel">{p.problem}</p>
+
+            <p className="mt-3 text-[0.95rem] leading-relaxed text-steel">
+              <span className="font-medium text-ink">The problem:</span> {p.problem}
+            </p>
+            <p className="mt-2 text-[0.95rem] leading-relaxed text-steel">
+              <span className="font-medium text-ink">What we did:</span> {p.workCompleted}
+            </p>
+
+            {p.features.length > 0 ? (
+              <ul className="mt-4 flex flex-wrap gap-2">
+                {p.features.map((f) => (
+                  <li
+                    key={f}
+                    className="rounded-sm border border-line bg-concrete px-2.5 py-1 font-mono text-[11px] text-ink"
+                  >
+                    {f}
+                  </li>
+                ))}
+              </ul>
+            ) : null}
+
+            {/* Only ever shown when the owner supplied a verified, permitted result. */}
             {p.outcome ? (
-              <p className="mt-2 inline-block rounded-sm bg-concrete px-2 py-0.5 text-xs font-medium text-ink">
+              <p className="mt-4 inline-block rounded-sm bg-hivis/15 px-3 py-1.5 text-sm font-semibold text-ink">
                 {p.outcome}
               </p>
             ) : null}

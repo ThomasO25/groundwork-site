@@ -86,8 +86,12 @@ export function Footer() {
               ) : null}
               {/* Always give a way to convert, even before contact details exist. */}
               <li>
-                <Link href="/contact" className="inline-flex items-center gap-2 font-medium text-white hover:text-hivis">
-                  Get a free quote
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center gap-2 font-medium text-white hover:text-hivis"
+                  data-analytics="footer_website_plan"
+                >
+                  Get a free website plan
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </Link>
               </li>
@@ -115,7 +119,7 @@ export function Footer() {
               Privacy
             </Link>
             <Link href="/contact" className="hover:text-white/80">
-              Get a quote
+              Get a website plan
             </Link>
           </div>
         </div>

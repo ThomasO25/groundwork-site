@@ -5,8 +5,8 @@ import { site, siteStatus } from "@/config/site";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
-  title: "Get a Free Quote",
-  description: `Request a free, no-pressure quote from ${site.name}. Tell us about your business and we'll get back to you, usually within one business day.`,
+  title: "Get a Free Website Plan",
+  description: `Get a free website plan from ${site.name} — what your website should do, what it would include, and what it costs. No obligation.`,
   path: "/contact",
 });
 
@@ -17,12 +17,13 @@ export default function ContactPage() {
     <>
       <Section tone="paper" className="pb-8">
         <div className="max-w-3xl">
-          <span className="spec-label">Get a free quote</span>
-          <h1 className="mt-3 text-display-lg text-ink">Let&apos;s get you more calls and quotes</h1>
+          <span className="spec-label">Free website plan</span>
+          <h1 className="mt-3 text-display-lg text-ink">Get your free website plan</h1>
           <p className="mt-5 text-lg leading-relaxed text-steel">
-            Tell us a little about your business. We&apos;ll follow up with a free, no-pressure quote — usually
-            within one business day.
-            {siteStatus.hasPhone ? " Prefer to talk? Call us directly, we'll pick up." : ""}
+            Tell us a little about your business and we&apos;ll send you a short, practical plan: what your
+            website should do, what it would include, and what it costs. It&apos;s free, there&apos;s no
+            obligation, and the plan is yours to keep either way.
+            {siteStatus.hasPhone ? " Prefer to talk? Call us directly." : ""}
           </p>
         </div>
       </Section>

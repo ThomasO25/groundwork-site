@@ -31,21 +31,21 @@ export default function ServicesPage() {
           <div className="container-frame py-14 lg:py-20">
             <div className="grid gap-10 lg:grid-cols-[1fr_1.1fr] lg:items-start">
               <div>
-                <div className="flex items-center gap-3">
-                  <span className="flex h-11 w-11 items-center justify-center rounded bg-ink text-white">
-                    <s.icon className="h-5 w-5" aria-hidden="true" />
-                  </span>
-                  <span className="font-mono text-xs uppercase tracking-[0.16em] text-steel">{s.code}</span>
-                </div>
+                <span className="flex h-11 w-11 items-center justify-center rounded bg-ink text-white">
+                  <s.icon className="h-5 w-5" aria-hidden="true" />
+                </span>
                 <h2 className="mt-5 text-display-md text-ink">{s.name}</h2>
                 <p className="mt-4 text-lg leading-relaxed text-steel">{s.summary}</p>
 
                 <dl className="mt-6 space-y-3 border-t border-line pt-6">
                   <div>
-                    <dt className="font-mono text-[11px] uppercase tracking-wide text-steel">Investment</dt>
+                    <dt className="font-mono text-[11px] uppercase tracking-wide text-steel">Price</dt>
                     <dd className="font-display text-2xl font-extrabold text-ink">{s.priceFrom}</dd>
-                    {s.financing ? <dd className="text-sm text-steel">{s.financing}</dd> : null}
-                    <dd className="mt-1 font-mono text-xs uppercase tracking-wide text-steel">{s.care}</dd>
+                    {s.paymentPlan ? <dd className="text-sm font-medium text-ink">{s.paymentPlan}</dd> : null}
+                    {s.care ? <dd className="mt-1 text-sm text-steel">{s.care}</dd> : null}
+                    {s.priceBasis ? (
+                      <dd className="mt-2 text-xs leading-relaxed text-steel">{s.priceBasis}</dd>
+                    ) : null}
                   </div>
                   <div>
                     <dt className="font-mono text-[11px] uppercase tracking-wide text-steel">Best for</dt>
@@ -65,7 +65,7 @@ export default function ServicesPage() {
                     href={`/contact?plan=${s.slug}`}
                     className="inline-flex h-11 items-center rounded border border-ink/25 px-5 text-[0.95rem] font-medium text-ink hover:border-ink"
                   >
-                    Get a quote
+                    Get my free website plan
                   </Link>
                 </div>
               </div>

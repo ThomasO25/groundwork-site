@@ -232,6 +232,36 @@ the public copy:
 
 ---
 
+## Analytics (optional, off by default)
+
+**No tracking script loads and no third-party request is made unless you set an
+ID.** Both providers are independent — enable either, both, or neither.
+
+| Variable | Provider | Gives you |
+| --- | --- | --- |
+| `NEXT_PUBLIC_GA_ID` | Google Analytics 4 (`G-XXXXXXXXXX`) | Traffic, sources, conversion events |
+| `NEXT_PUBLIC_CLARITY_ID` | Microsoft Clarity | Heatmaps and session replay (free) |
+
+Once either is set, these conversion events are reported automatically:
+
+| Event | Fires when |
+| --- | --- |
+| `cta_click` | Any button marked `data-analytics="..."` is clicked |
+| `phone_click` | Any `tel:` link is tapped |
+| `email_click` | Any `mailto:` link is clicked |
+| `portfolio_click` | A portfolio project is clicked |
+| `contact_form_start` | Someone first types in the quote form |
+| `contact_form_submit` | A submission succeeds |
+| `booking_click` | The post-submission "book a call" button is used |
+
+Clicks are captured by event delegation in `src/components/site/analytics.tsx`,
+so a new tracked button only needs a `data-analytics="my_button"` attribute — no
+client component, no extra JavaScript per button.
+
+> If you turn analytics on, update the privacy policy to say so.
+
+---
+
 ## Continuous integration
 
 `.github/workflows/ci.yml` runs on every push to `main` and every pull request:

@@ -1,15 +1,24 @@
 import type { LucideIcon } from "lucide-react";
 import { Rocket, TrendingUp, Workflow } from "lucide-react";
 
+/**
+ * Service copy is written for a busy business owner — not a developer.
+ * Every line is a business outcome. Technical terms only appear when the
+ * benefit is spelled out in the same breath. No guarantees, ever.
+ */
 export type Service = {
   slug: string;
-  code: string; // spec-label code used in the design (e.g. "SVC-01")
   name: string;
   icon: LucideIcon;
   summary: string;
+  /** Headline price. */
   priceFrom: string;
-  financing?: string;
-  care: string; // ongoing care line
+  /** Payment-plan line. */
+  paymentPlan?: string;
+  /** How the final number is decided (for scoped work). */
+  priceBasis?: string;
+  /** Ongoing care — always optional. */
+  care?: string;
   bestFor: string;
   includes: string[];
   outcomes: string[];
@@ -18,78 +27,78 @@ export type Service = {
 export const services: Service[] = [
   {
     slug: "website-launch",
-    code: "SVC-01",
     name: "Website Launch",
     icon: Rocket,
     summary:
-      "A fast, professional 4–6 page website that makes your business look established and makes it effortless for customers to call or request a quote.",
+      "A fast, professional website that makes your business look established and makes it effortless for a customer to call you or ask for a quote.",
     priceFrom: "Starting at $1,500",
-    financing: "Or $500/month for 3 months",
-    care: "Maintenance from $75/month",
+    paymentPlan: "Or $500 per month for three months",
+    care: "Optional website care from $75/month",
     bestFor:
-      "Established local businesses that need a credible, mobile-first site that actually brings in calls — replacing an outdated site or a Facebook-only presence.",
+      "Established local businesses that need a site that actually brings in calls — replacing an outdated site, or a Facebook page doing all the work.",
     includes: [
-      "Custom, mobile-first design (not a generic template)",
-      "Up to 6 pages: Home, Services, About, Reviews, Service Areas, Contact",
-      "Click-to-call and a simple quote-request form",
-      "Local SEO foundation: titles, metadata, sitemap, structured data",
-      "Google Business Profile linking and setup guidance",
-      "Fast, secure hosting on Vercel with SSL",
+      "A custom design built around your business — not a template",
+      "Up to 6 pages: Home, Services, About, Reviews, Areas, Contact",
+      "Tap-to-call and a simple quote form on every page",
+      "The local search basics set up properly, so nearby customers can find you",
+      "Your Google Business Profile connected and set up correctly",
+      "Hosting that keeps the site fast and protected",
     ],
     outcomes: [
       "More phone calls and quote requests from local searches",
-      "A business that looks trustworthy and established",
-      "A site that loads fast and works on every phone",
+      "A business that looks trustworthy before anyone calls",
+      "A site that loads fast and works properly on every phone",
     ],
   },
   {
     slug: "growth-website",
-    code: "SVC-02",
     name: "Growth Website",
     icon: TrendingUp,
     summary:
-      "Everything in Launch, expanded into individual service pages, a project gallery, reviews, and location pages that help you rank and convert across your whole service area.",
-    priceFrom: "Generally $2,500–$3,500",
-    care: "Ongoing service generally $150–$200/month",
+      "Everything in Website Launch, expanded with a page for each service, a photo gallery, customer reviews, and coverage of every area you work in.",
+    priceFrom: "Starting at $2,500",
+    priceBasis:
+      "Final pricing is based on pages, content, service areas, and features — written down before you commit.",
+    care: "Optional website care available",
     bestFor:
-      "Growing companies with several services and a wider service area that want to be found for more searches and win bigger, better-qualified jobs.",
+      "Growing companies with several services and a wider service area that want to be found for more searches and win bigger jobs.",
     includes: [
       "Everything in Website Launch",
-      "Dedicated pages for each core service",
-      "Project gallery / portfolio with before-and-after support",
-      "Reviews and testimonials system",
-      "Service-area pages written naturally (no duplicate 'fake location' pages)",
-      "Expanded SEO: internal linking, richer structured data, image optimization",
+      "A dedicated page for each service you offer",
+      "A photo gallery, including before-and-after work",
+      "Customer reviews shown where they'll be seen",
+      "Honest pages for the areas you actually serve",
+      "Deeper local search setup as your site grows",
     ],
     outcomes: [
       "Found for more services and more locations",
-      "Higher-quality leads that already trust you",
-      "Room to grow content without a rebuild",
+      "Better-quality enquiries from people who already trust you",
+      "Room to add more work and services without starting over",
     ],
   },
   {
     slug: "lead-system",
-    code: "SVC-03",
     name: "Lead System",
     icon: Workflow,
     summary:
-      "A complete lead-capture and follow-up system: conversion-focused landing pages, smarter forms, an admin dashboard, and connections to email, SMS, or your CRM so leads get captured and followed up quickly.",
-    priceFrom: "Generally $4,000–$7,500",
-    care: "Ongoing service generally $250–$500/month",
+      "For businesses ready to handle more enquiries without dropping any: dedicated pages for your best jobs, a simple dashboard of incoming leads, and automatic follow-up so people hear back quickly.",
+    priceFrom: "Custom quote",
+    priceBasis:
+      "Scoped to what you actually need — dashboards, connections to the tools you already use, follow-up automation, and admin requirements. Nothing is built until it's agreed in writing.",
     bestFor:
-      "Businesses that already get traffic and want to convert more of it — with tracked leads, faster response, and automation that saves the owner time.",
+      "Businesses that already get enquiries and want to convert more of them, with faster follow-up and less admin for the owner.",
     includes: [
       "Everything in Growth Website",
-      "Conversion-focused landing pages for key services or campaigns",
-      "Lead dashboard with statuses, notes, and lead-source tracking",
-      "Automated notifications and follow-up hooks (email / SMS / CRM)",
-      "Secure admin area with proper authorization",
-      "Analytics and conversion-event tracking",
+      "Dedicated pages for specific jobs, offers, or campaigns",
+      "A simple dashboard showing every lead and its status",
+      "Automatic follow-up by email or text, so nobody waits days",
+      "Connections to the tools you already use to track customers",
+      "Clear reporting on which marketing actually brings in work",
     ],
     outcomes: [
-      "Faster follow-up and fewer missed leads",
-      "Clear visibility into which marketing brings in work",
-      "Less manual admin for the owner",
+      "Faster follow-up, so fewer enquiries go cold",
+      "A clear view of where your work is coming from",
+      "Less time spent on admin and chasing",
     ],
   },
 ];

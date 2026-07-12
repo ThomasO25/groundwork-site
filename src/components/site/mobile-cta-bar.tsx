@@ -21,9 +21,10 @@ export function MobileCtaBar() {
         ) : null}
         <a
           href="/contact"
-          className="inline-flex h-12 items-center justify-center rounded bg-hivis font-semibold text-ink"
+          className="inline-flex h-12 items-center justify-center rounded bg-hivis px-3 text-center font-semibold text-ink"
+          data-analytics="mobile_bar_website_plan"
         >
-          Get a free quote
+          Get my free website plan
         </a>
       </div>
     </div>

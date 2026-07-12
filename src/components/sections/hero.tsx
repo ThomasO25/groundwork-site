@@ -1,14 +1,23 @@
-import { Phone, Check, ArrowRight } from "lucide-react";
+import { Check, ArrowRight } from "lucide-react";
 import { site, siteStatus } from "@/config/site";
 import { ButtonLink } from "@/components/ui/button";
 import { ImagePlaceholder } from "@/components/ui/image-placeholder";
+import { getVisibleProjects } from "@/content/portfolio";
+import { cn } from "@/lib/utils";
 
-const proofPoints = ["More calls & quote requests", "Looks established & trustworthy", "Fast on every phone"];
+const proofPoints = [
+  "More calls and quote requests",
+  "Looks established and trustworthy",
+  "Easy to find, fast on every phone",
+];
 
 export function Hero() {
+  const hasWork = getVisibleProjects().length > 0;
+  const hasImage = siteStatus.hasHeroImage;
+
   return (
     <section className="relative overflow-hidden border-b border-line bg-paper">
-      {/* faint engineered grid, kept very subtle */}
+      {/* Faint engineered grid — restrained, part of the Groundwork identity. */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0"
@@ -21,39 +30,55 @@ export function Hero() {
           opacity: 0.05,
         }}
       />
-      <div className="container-frame relative grid items-center gap-12 py-16 sm:py-20 lg:grid-cols-[1.05fr_0.95fr] lg:py-24">
-        <div>
+
+      <div
+        className={cn(
+          "container-frame relative items-center gap-12 py-16 sm:py-20 lg:py-24",
+          hasImage ? "grid lg:grid-cols-[1.05fr_0.95fr]" : "grid"
+        )}
+      >
+        <div className={cn(!hasImage && "max-w-3xl")}>
           <span className="spec-label">
-            Websites &amp; Lead Systems{siteStatus.hasRegion ? ` · ${site.primaryRegion}` : ""}
+            For contractors &amp; local service businesses
+            {siteStatus.hasRegion ? ` · ${site.primaryRegion}` : ""}
           </span>
+
           <h1 className="mt-4 text-display-xl text-ink">
-            More calls. More quotes.{" "}
-            <span className="relative whitespace-nowrap">
-              More booked work.
-              <span className="absolute -bottom-1 left-0 h-1 w-full bg-hivis" aria-hidden="true" />
+            A better website can bring your business{" "}
+            {/* Amber underline drawn as a background gradient so it survives line
+                wrapping — `whitespace-nowrap` here would overflow a 320px screen. */}
+            <span className="box-decoration-clone bg-[linear-gradient(to_top,#F2A20C_0,#F2A20C_5px,transparent_5px)] pb-1">
+              better customers.
             </span>
           </h1>
+
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-steel">
-            We build fast, professional websites for local service businesses — designed to make you
-            look established and turn everyday searches into phone calls and quote requests.
+            {site.name} builds fast, professional websites for contractors and local service businesses —
+            designed to turn searches into calls, quote requests, and booked work.
           </p>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <ButtonLink href="/contact" size="lg">
-              Get a free quote
+            <ButtonLink href="/contact" size="lg" data-analytics="hero_primary_website_plan">
+              Get My Free Website Plan
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </ButtonLink>
-            {siteStatus.hasPhone ? (
-              <ButtonLink href={`tel:${site.contact.phoneHref}`} variant="outline" size="lg">
-                <Phone className="h-4 w-4" aria-hidden="true" />
-                {site.contact.phoneDisplay}
+            {/* Only promise "real projects" when real, permitted projects exist —
+                otherwise this CTA would lead to an empty page. */}
+            {hasWork ? (
+              <ButtonLink href="/work" variant="outline" size="lg" data-analytics="hero_secondary_see_work">
+                See Real Projects
               </ButtonLink>
             ) : (
-              <ButtonLink href="/pricing" variant="outline" size="lg">
-                See pricing
+              <ButtonLink href="#process" variant="outline" size="lg" data-analytics="hero_secondary_process">
+                See how it works
               </ButtonLink>
             )}
           </div>
+
+          <p className="mt-5 text-sm text-steel">
+            Free, no-pressure. You&apos;ll get a short plan for what your site should do — whether or not you
+            hire us.
+          </p>
 
           <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-2">
             {proofPoints.map((p) => (
@@ -65,20 +90,20 @@ export function Hero() {
           </ul>
         </div>
 
-        <div>
-          <ImagePlaceholder
-            alt="Featured project or a photo of your team, trucks, or shop"
-            label="Add a strong hero photo — your best work, your crew, or a preview of a site you're proud of."
-            ratio="aspect-[4/3]"
-          />
-          <div className="mt-3 grid grid-cols-3 divide-x divide-line rounded border border-line bg-white text-center">
-            {["Fast", "Mobile-first", "Secure"].map((t) => (
-              <span key={t} className="px-2 py-2.5 font-mono text-[11px] uppercase tracking-[0.14em] text-steel">
-                {t}
-              </span>
-            ))}
+        {/* Hero image is optional. With none configured, nothing renders here in
+            production and the hero stays a clean, intentional typographic block. */}
+        {hasImage ? (
+          <div>
+            <ImagePlaceholder
+              src={site.media.heroImage}
+              alt="Recent work by Groundwork"
+              label="Hero image: your best finished site, your crew, or your work."
+              ratio="aspect-[4/3]"
+              sizes="(max-width: 1024px) 100vw, 45vw"
+              priority
+            />
           </div>
-        </div>
+        ) : null}
       </div>
     </section>
   );

@@ -6,6 +6,7 @@ import { siteUrl, localBusinessJsonLd, JsonLd } from "@/lib/seo";
 import { Header } from "@/components/site/header";
 import { Footer } from "@/components/site/footer";
 import { MobileCtaBar } from "@/components/site/mobile-cta-bar";
+import { Analytics } from "@/components/site/analytics";
 
 /**
  * Fonts are self-hosted (Archivo + IBM Plex, both SIL Open Font License) via
@@ -72,6 +73,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Footer />
         <MobileCtaBar />
         <JsonLd data={localBusinessJsonLd()} />
+        {/* Loads GA4 / Clarity only if their env vars are set; also auto-tracks CTA,
+            phone, email, and portfolio clicks site-wide. */}
+        <Analytics />
       </body>
     </html>
   );

@@ -75,27 +75,35 @@ export async function POST(request: Request) {
     console.warn("[quote] Email delivery NOT configured — logging lead only, not sending:", {
       name: data.name,
       business: data.business,
-      email: data.email,
-      phone: data.phone,
-      industry: data.industry,
-      budget: data.budget,
-      source: data.source,
+      email: data.email || "—",
+      phone: data.phone || "—",
+      website: data.website || "—",
+      help: data.help,
+      industry: data.industry || "—",
+      budget: data.budget || "—",
+      timeline: data.timeline || "—",
+      source: data.source || "—",
     });
     return NextResponse.json({ ok: true, delivered: false });
   }
 
   // Deliver via Resend's REST API (no SDK dependency needed).
+  const row = (k: string, v?: string) =>
+    `<tr><td><strong>${k}</strong></td><td>${escapeHtml(v || "—")}</td></tr>`;
+
   const html = `
-    <h2>New quote request</h2>
+    <h2>New website-plan request</h2>
     <table cellpadding="6" style="font-family:sans-serif;font-size:14px">
-      <tr><td><strong>Name</strong></td><td>${escapeHtml(data.name)}</td></tr>
-      <tr><td><strong>Business</strong></td><td>${escapeHtml(data.business || "—")}</td></tr>
-      <tr><td><strong>Email</strong></td><td>${escapeHtml(data.email)}</td></tr>
-      <tr><td><strong>Phone</strong></td><td>${escapeHtml(data.phone)}</td></tr>
-      <tr><td><strong>Industry</strong></td><td>${escapeHtml(data.industry || "—")}</td></tr>
-      <tr><td><strong>Budget</strong></td><td>${escapeHtml(data.budget || "—")}</td></tr>
-      <tr><td><strong>Message</strong></td><td>${escapeHtml(data.message || "—")}</td></tr>
-      <tr><td><strong>Source</strong></td><td>${escapeHtml(data.source || "—")}</td></tr>
+      ${row("Name", data.name)}
+      ${row("Business", data.business)}
+      ${row("Email", data.email)}
+      ${row("Phone", data.phone)}
+      ${row("Current website", data.website)}
+      ${row("Needs help with", data.help)}
+      ${row("Industry", data.industry)}
+      ${row("Budget", data.budget)}
+      ${row("Timeline", data.timeline)}
+      ${row("Source", data.source)}
     </table>`;
 
   try {
@@ -105,8 +113,9 @@ export async function POST(request: Request) {
       body: JSON.stringify({
         from,
         to: [to],
-        reply_to: data.email,
-        subject: `New quote request — ${data.name}${data.business ? ` (${data.business})` : ""}`,
+        // Only set reply-to when they left an email; phone-only leads are valid.
+        ...(data.email ? { reply_to: data.email } : {}),
+        subject: `New website-plan request — ${data.name} (${data.business})`,
         html,
       }),
     });

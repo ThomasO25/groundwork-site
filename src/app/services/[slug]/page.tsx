@@ -52,17 +52,26 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
         </nav>
         <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
           <div>
-            <span className="spec-label">{service.code}</span>
+            <span className="spec-label">What we build</span>
             <h1 className="mt-3 text-display-lg text-ink">{service.name}</h1>
             <p className="mt-5 max-w-2xl text-lg leading-relaxed text-steel">{service.summary}</p>
           </div>
           <div className="rounded border border-line bg-concrete p-6">
-            <p className="font-mono text-[11px] uppercase tracking-wide text-steel">Investment</p>
+            <p className="font-mono text-[11px] uppercase tracking-wide text-steel">Price</p>
             <p className="mt-1 font-display text-3xl font-extrabold text-ink">{service.priceFrom}</p>
-            {service.financing ? <p className="mt-1 text-sm text-steel">{service.financing}</p> : null}
-            <p className="mt-1 font-mono text-xs uppercase tracking-wide text-steel">{service.care}</p>
-            <ButtonLink href={`/contact?plan=${service.slug}`} className="mt-5 w-full">
-              Get a free quote
+            {service.paymentPlan ? (
+              <p className="mt-1 text-sm font-medium text-ink">{service.paymentPlan}</p>
+            ) : null}
+            {service.care ? <p className="mt-1 text-sm text-steel">{service.care}</p> : null}
+            {service.priceBasis ? (
+              <p className="mt-3 text-xs leading-relaxed text-steel">{service.priceBasis}</p>
+            ) : null}
+            <ButtonLink
+              href={`/contact?plan=${service.slug}`}
+              className="mt-5 w-full"
+              data-analytics={`service_${service.slug}_primary`}
+            >
+              Get my free website plan
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </ButtonLink>
             {siteStatus.hasPhone ? (

@@ -58,6 +58,29 @@ export interface SiteConfig {
     linkedin: string;
   };
 
+  /**
+   * The person clients actually work with. Leave `name` empty until the real
+   * founder details exist — the founder card is hidden rather than faked.
+   */
+  founder: {
+    name: string;
+    /** Image path in /public, e.g. "/founder.jpg". Empty = photo hidden. */
+    photo: string;
+    /** 2–4 sentences, first person or third — the real story, no invented history. */
+    bio: string;
+    /** e.g. "Tampa, FL". Empty = hidden. */
+    location: string;
+    /** Optional direct line, shown only in the founder card. E.164 for the link. */
+    phoneDisplay: string;
+    phoneHref: string;
+    email: string;
+  };
+
+  media: {
+    /** Optional hero image in /public. Empty = clean typographic hero (no empty frame). */
+    heroImage: string;
+  };
+
   /** Optional scheduling URL (Calendly/Cal.com/etc.). */
   bookingUrl: string;
   /** Business hours in schema.org format for structured data. */
@@ -102,8 +125,30 @@ export const site: SiteConfig = {
     linkedin: "",
   },
 
+  // --- The person clients work with -----------------------------------------
+  // Leave `name` empty until real details exist. With no name, the founder card
+  // is replaced by an honest "you work directly with your builder" note that
+  // claims no identity, photo, or history.
+  founder: {
+    name: "", // e.g. "Alex Rivera"
+    photo: "", // e.g. "/founder.jpg" (drop the file in /public)
+    bio: "", // 2–4 real sentences. Never invent a backstory.
+    location: "", // e.g. "Tampa, FL"
+    phoneDisplay: "",
+    phoneHref: "",
+    email: "",
+  },
+
+  // --- Imagery --------------------------------------------------------------
+  media: {
+    heroImage: "", // e.g. "/hero.jpg". Empty = clean typographic hero, no empty frame.
+  },
+
   // --- Optional -------------------------------------------------------------
-  bookingUrl: "",
+  // Scheduling link for the "book a short call" option after a form submission.
+  // Set NEXT_PUBLIC_BOOKING_URL in the environment, or hard-code it here.
+  // Empty = the booking option is hidden entirely.
+  bookingUrl: process.env.NEXT_PUBLIC_BOOKING_URL || "",
   hours: "Mo-Fr 09:00-17:00",
 };
 
@@ -119,6 +164,14 @@ export const siteStatus = {
   hasServiceAreas: site.serviceAreas.length > 0,
   hasLegalName: Boolean(site.legalName),
   hasRegion: Boolean(site.primaryRegion),
+  /** A named founder exists → render the real founder card. */
+  hasFounder: Boolean(site.founder.name),
+  hasFounderPhoto: Boolean(site.founder.photo),
+  hasFounderPhone: Boolean(site.founder.phoneHref && site.founder.phoneDisplay),
+  hasFounderEmail: Boolean(site.founder.email),
+  hasHeroImage: Boolean(site.media.heroImage),
+  /** Scheduling link configured → offer "book a short call" after submitting. */
+  hasBooking: Boolean(site.bookingUrl),
   get hasAnyContact(): boolean {
     return this.hasPhone || this.hasEmail;
   },

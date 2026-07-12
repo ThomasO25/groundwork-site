@@ -9,10 +9,10 @@ import { Smartphone, Gauge, KeyRound, Search } from "lucide-react";
  * REAL, verifiable values (see docs/OWNER_CONTENT_REQUIRED.md).
  */
 const items = [
-  { icon: Smartphone, label: "Mobile-first", note: "Built for how customers actually search" },
-  { icon: Gauge, label: "Fast & secure", note: "Static hosting on Vercel with SSL" },
-  { icon: KeyRound, label: "You own it", note: "Your domain, content, and site" },
-  { icon: Search, label: "Local SEO", note: "Foundation built in from day one" },
+  { icon: Smartphone, label: "Built for phones", note: "Where most customers will find you" },
+  { icon: Gauge, label: "Fast & secure", note: "Loads quickly, protected by default" },
+  { icon: KeyRound, label: "You own it", note: "Your site, domain, and content" },
+  { icon: Search, label: "Easy to find", note: "Set up for local searches from day one" },
 ];
 
 export function TrustBar() {

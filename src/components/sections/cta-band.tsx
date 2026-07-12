@@ -4,8 +4,8 @@ import { ButtonLink } from "@/components/ui/button";
 
 /** Reusable mid/bottom conversion band. Tone defaults to the dark ink section. */
 export function CtaBand({
-  title = "Ready for more calls and quotes?",
-  subtitle = "Tell us about your business and we'll send a free, no-pressure quote — usually within one business day.",
+  title = "Ready for more calls and quote requests?",
+  subtitle = "Tell us about your business and we'll send you a free website plan — what your site should do, what it would include, and what it costs. Usually within one business day.",
 }: {
   title?: string;
   subtitle?: string;
@@ -20,8 +20,8 @@ export function CtaBand({
             <p className="mt-4 text-lg leading-relaxed text-white/70">{subtitle}</p>
           </div>
           <div className="flex w-full flex-col gap-3 sm:flex-row lg:w-auto">
-            <ButtonLink href="/contact" size="lg">
-              Get a free quote
+            <ButtonLink href="/contact" size="lg" data-analytics="cta_band_website_plan">
+              Get My Free Website Plan
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </ButtonLink>
             {siteStatus.hasPhone ? (

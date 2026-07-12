@@ -54,8 +54,8 @@ export function Header() {
               {site.contact.phoneDisplay}
             </a>
           ) : null}
-          <ButtonLink href="/contact" size="sm">
-            Get a free quote
+          <ButtonLink href="/contact" size="sm" data-analytics="header_website_plan">
+            Get a free website plan
           </ButtonLink>
         </div>
 
@@ -85,7 +85,7 @@ export function Header() {
             ))}
             <div className="my-2 h-px bg-line" />
             <ButtonLink href="/contact" className="w-full" onClick={() => setOpen(false)}>
-              Get a free quote
+              Get a free website plan
             </ButtonLink>
           </nav>
         </div>
