@@ -13,7 +13,16 @@ type Status = "idle" | "submitting" | "success" | "error";
 type Errors = Partial<Record<string, string>>;
 
 // "Not sure yet" first — nobody is asked to commit to a spend before we've talked.
-const budgets = ["Not sure yet", "$1,500–$2,500", "$2,500–$5,000", "$5,000+", "Prefer not to say"];
+// Bands start BELOW the $750 Starter Site — the old lowest band was $1,500+,
+// which quietly told a small business they were priced out before we'd spoken.
+const budgets = [
+  "Not sure yet",
+  "Under $1,000",
+  "$1,000–$2,500",
+  "$2,500–$5,000",
+  "$5,000+",
+  "Prefer not to say",
+];
 const timelines = ["Not sure yet", "As soon as possible", "In the next 1–3 months", "Just researching"];
 // Situation-based, NOT package-based. A visitor never has to choose a price tier
 // in order to get in touch.

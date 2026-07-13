@@ -1,6 +1,7 @@
 import { Check, Minus } from "lucide-react";
 import { pricingTiers, pricingNote, notSureNote, care, paymentTerms } from "@/content/pricing";
 import { ButtonLink } from "@/components/ui/button";
+import { siteStatus } from "@/config/site";
 import { cn } from "@/lib/utils";
 
 /**
@@ -90,6 +91,12 @@ export function PricingTiers({ heading = true }: { heading?: boolean }) {
         <div className="rounded-lg border border-line bg-surface p-7">
           <h3 className="font-display text-xl font-bold text-ink">{paymentTerms.heading}</h3>
           <p className="mt-3 leading-relaxed text-steel">{paymentTerms.body}</p>
+          <p className="mt-3 leading-relaxed text-steel">{paymentTerms.care}</p>
+          {/* Payment methods are only stated once the owner's account is actually
+              live and tested — we don't promise a payment option that isn't ready. */}
+          {siteStatus.hasPaymentMethods ? (
+            <p className="mt-3 leading-relaxed text-steel">{paymentTerms.methods}</p>
+          ) : null}
         </div>
 
         <div className="rounded-lg border border-line bg-surface p-7">

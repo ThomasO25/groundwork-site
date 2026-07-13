@@ -81,6 +81,22 @@ export interface SiteConfig {
     heroImage: string;
   };
 
+  payments: {
+    /**
+     * Set to TRUE only once the owner's payment account (Square) is actually set
+     * up and tested. While false, the site never states which payment methods are
+     * accepted — because claiming methods that don't work yet is a promise we
+     * can't keep. See docs/PAYMENTS_SETUP.md.
+     */
+    methodsConfirmed: boolean;
+    /**
+     * Optional public deposit figure, e.g. "50%". LEAVE EMPTY unless the owner
+     * has decided. Empty = the site says only that projects "normally begin with
+     * a deposit", with the exact schedule in the written proposal.
+     */
+    depositNote: string;
+  };
+
   /** Optional scheduling URL (Calendly/Cal.com/etc.). */
   bookingUrl: string;
   /** Business hours in schema.org format for structured data. */
@@ -149,6 +165,14 @@ export const site: SiteConfig = {
     heroImage: "", // e.g. "/hero.jpg". Empty = clean typographic hero, no empty frame.
   },
 
+  // --- Payments -------------------------------------------------------------
+  // No checkout, no Buy Now button, no stored card details, no API keys — ever.
+  // Customers receive an individual secure invoice AFTER agreeing to a project.
+  payments: {
+    methodsConfirmed: false, // flip to true only once Square is live and tested
+    depositNote: "", // e.g. "50%" — only if the owner decides to publish it
+  },
+
   // --- Optional -------------------------------------------------------------
   // Scheduling link for the "book a short call" option after a form submission.
   // Set NEXT_PUBLIC_BOOKING_URL in the environment, or hard-code it here.
@@ -178,6 +202,9 @@ export const siteStatus = {
   hasHeroImage: Boolean(site.media.heroImage),
   /** Scheduling link configured → offer "book a short call" after submitting. */
   hasBooking: Boolean(site.bookingUrl),
+  /** Payment account confirmed → safe to state which payment methods work. */
+  hasPaymentMethods: site.payments.methodsConfirmed,
+  hasDepositNote: Boolean(site.payments.depositNote),
   get hasAnyContact(): boolean {
     return this.hasPhone || this.hasEmail;
   },

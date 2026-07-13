@@ -134,10 +134,20 @@ export const care = {
   note: "Minor edits are covered up to an agreed monthly allowance — not unlimited. Larger changes are quoted separately, always in writing first.",
 };
 
-/** Payment terms. No financing, no universal schedule, no public deposit figure. */
+/**
+ * Payment terms.
+ * No financing, no buy-now-pay-later, no public checkout, no surprise fees.
+ * Each customer receives their own secure invoice AFTER agreeing to a project —
+ * there is deliberately no public "pay now" link anywhere on this site.
+ *
+ * `methods` is only shown when site.payments.methodsConfirmed is true, so the
+ * site never claims a payment method that isn't actually live yet.
+ */
 export const paymentTerms = {
   heading: "How payment works",
-  body: "Projects typically begin with a deposit, with the remaining balance scheduled according to the project scope. Your exact payment schedule is set out in your written proposal before any work starts — no financing, no credit checks, and no third-party lender.",
+  body: "After the project scope is approved, you'll receive a written agreement and a secure invoice. Projects normally begin with a deposit, and the remaining payment schedule is listed clearly in the proposal — so there are no surprises and nothing to apply for.",
+  methods: "Card and bank-transfer payment options are available.",
+  care: "Optional website care is billed as a recurring invoice, and only after you've authorised it.",
 };
 
 /** Shown near pricing to set expectations honestly. */

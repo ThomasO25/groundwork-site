@@ -3,19 +3,15 @@ import { site, siteStatus } from "@/config/site";
 import { ButtonLink } from "@/components/ui/button";
 
 export function CtaBand({
-  title = "Ready for more calls and quote requests?",
-  subtitle = "Tell us about your business and we'll send you a free website plan — what your site should do, what it would include, and what it costs. Usually within one business day.",
+  title = "Tell us about your business.",
+  subtitle = "We'll send back a practical recommendation for what your website should do, what it would include, and what the next step would cost. No pressure, and the plan is yours either way.",
 }: {
   title?: string;
   subtitle?: string;
 }) {
   return (
     <section className="relative overflow-hidden bg-ink">
-      {/* one restrained brand motif, bled off the corner */}
-      <div
-        aria-hidden="true"
-        className="notch absolute -right-16 -top-16 h-56 w-56 bg-white/[0.03]"
-      />
+      <div aria-hidden="true" className="notch absolute -right-16 -top-16 h-56 w-56 bg-white/[0.03]" />
       <div className="container-frame relative py-16 sm:py-20">
         <div className="flex flex-col items-start justify-between gap-9 lg:flex-row lg:items-center">
           <div className="max-w-2xl">

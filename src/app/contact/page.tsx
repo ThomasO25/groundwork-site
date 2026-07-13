@@ -1,4 +1,4 @@
-import { Phone, Mail, MapPin, Clock, ExternalLink, Check } from "lucide-react";
+import { Phone, Mail, MapPin, Clock, ExternalLink, Check, Minus } from "lucide-react";
 import { QuoteForm } from "@/components/forms/quote-form";
 import { Section } from "@/components/ui/section";
 import { site, siteStatus } from "@/config/site";
@@ -10,12 +10,20 @@ export const metadata = buildMetadata({
   path: "/contact",
 });
 
-/** What the free website plan actually delivers. Kept in sync with the homepage. */
+/** What the free website plan includes — and, just as clearly, what it doesn't. */
 const planIncludes = [
-  "A recommendation for what your website should do",
-  "The scope we'd suggest, and the pages or features that matter",
-  "Which service level fits — and a starting or estimated price",
-  "The next steps we'd recommend, whether or not you hire us",
+  "A recommended objective for the website",
+  "Suggested pages and the features that matter",
+  "The service level that fits your business",
+  "A starting or estimated project price",
+  "The next steps we'd recommend",
+];
+
+const planExcludes = [
+  "A completed visual design",
+  "A coded homepage",
+  "A complete SEO audit",
+  "A full business strategy document",
 ];
 
 export default function ContactPage() {
@@ -40,11 +48,11 @@ export default function ContactPage() {
           <QuoteForm />
 
           <aside className="space-y-6 lg:sticky lg:top-28">
-            {/* Exactly what the free plan is — and, just as importantly, what it isn't. */}
+            {/* What the plan includes — and what it doesn't. Stated matter-of-factly. */}
             <div className="rounded-lg border border-line bg-surface p-6 shadow-soft">
-              <h2 className="font-display text-lg font-bold text-ink">What you&apos;ll actually get</h2>
+              <h2 className="font-display text-lg font-bold text-ink">What&apos;s in the free website plan</h2>
               <p className="mt-3 leading-relaxed text-steel">
-                We&apos;ll review what you send and write back with:
+                It&apos;s a practical recommendation rather than a finished mockup or full audit. You&apos;ll get:
               </p>
               <ul className="mt-4 space-y-2.5">
                 {planIncludes.map((item) => (
@@ -54,10 +62,21 @@ export default function ContactPage() {
                   </li>
                 ))}
               </ul>
-              <p className="mt-5 border-t border-line pt-4 text-sm leading-relaxed text-steel">
-                It&apos;s honest advice, written down — not free labour. So it isn&apos;t a mockup, a
-                finished design, an SEO audit, or a full strategy document.
-              </p>
+
+              <div className="mt-5 border-t border-line pt-4">
+                <p className="text-sm font-semibold text-ink">It doesn&apos;t include</p>
+                <ul className="mt-2.5 space-y-2">
+                  {planExcludes.map((item) => (
+                    <li key={item} className="flex items-start gap-2.5 text-sm text-steel">
+                      <Minus className="mt-1 h-3.5 w-3.5 shrink-0 text-steel/60" aria-hidden="true" />
+                      <span className="leading-relaxed">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+                <p className="mt-3 text-sm leading-relaxed text-steel">
+                  Those are the project itself. The plan is what tells you whether the project is worth doing.
+                </p>
+              </div>
             </div>
 
             {/* Nobody should feel unqualified to fill the form in. */}
