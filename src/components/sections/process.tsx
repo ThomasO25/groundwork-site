@@ -15,7 +15,7 @@ const steps: [string, string][] = [
   ],
   [
     "Launch and support",
-    "We handle the launch and get you listed with Google. Afterwards, you still have someone to call.",
+    "We handle the launch and set up the technical foundations that help search engines discover and understand your site. Afterwards, you still have someone to call.",
   ],
 ];
 

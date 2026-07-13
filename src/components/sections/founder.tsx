@@ -54,7 +54,17 @@ export function Founder() {
           <h2 className="mt-4 text-display-md text-paper">
             You work directly with the person building your site
           </h2>
-          <p className="mt-6 max-w-prose text-lg leading-relaxed text-paper/70">{f.bio}</p>
+          {/* Bio only when the owner has actually written one — never invented. The
+              copy below is true regardless of whether a bio exists. */}
+          {siteStatus.hasFounderBio ? (
+            <p className="mt-6 max-w-prose text-lg leading-relaxed text-paper/70">{f.bio}</p>
+          ) : (
+            <p className="mt-6 max-w-prose text-lg leading-relaxed text-paper/70">
+              No account managers, no call centre, and no handing your project down a chain. The person who
+              plans your website is the person who builds it — so nothing gets lost in translation, and you
+              always know who to call.
+            </p>
+          )}
 
           <div className="mt-8 border-t border-line-dark pt-6">
             <p className="font-display text-xl font-bold text-paper">{f.name}</p>

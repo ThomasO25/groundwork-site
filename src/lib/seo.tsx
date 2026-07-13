@@ -64,6 +64,9 @@ export function localBusinessJsonLd() {
     name: legalDisplayName,
     description: site.description,
     url: siteUrl,
+    // Coarse indicator only. Never emit AggregateRating or Review schema unless
+    // real, qualifying reviews exist — fabricated review markup is both dishonest
+    // and a Google structured-data violation.
     priceRange: "$$",
     ...(siteStatus.hasPhone ? { telephone: site.contact.phoneDisplay } : {}),
     ...(siteStatus.hasEmail ? { email: site.contact.email } : {}),

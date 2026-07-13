@@ -78,6 +78,7 @@ export async function POST(request: Request) {
       email: data.email || "—",
       phone: data.phone || "—",
       website: data.website || "—",
+      interest: data.interest || "—",
       help: data.help,
       industry: data.industry || "—",
       budget: data.budget || "—",
@@ -99,6 +100,7 @@ export async function POST(request: Request) {
       ${row("Email", data.email)}
       ${row("Phone", data.phone)}
       ${row("Current website", data.website)}
+      ${row("What brings them here", data.interest)}
       ${row("Needs help with", data.help)}
       ${row("Industry", data.industry)}
       ${row("Budget", data.budget)}

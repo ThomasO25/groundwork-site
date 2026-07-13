@@ -4,7 +4,8 @@ import { site, siteStatus, legalDisplayName } from "@/config/site";
 import { GroundworkLogoLink } from "@/components/brand/groundwork-logo";
 
 const services = [
-  { href: "/services/website-launch", label: "Website Launch" },
+  { href: "/services/starter-site", label: "Starter Site" },
+  { href: "/services/business-website", label: "Business Website" },
   { href: "/services/growth-website", label: "Growth Website" },
   { href: "/services/lead-system", label: "Lead System" },
   { href: "/pricing", label: "Pricing" },

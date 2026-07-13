@@ -10,7 +10,7 @@ const benefits: [string, string][] = [
   ["Show your best work", "Photos of real jobs, laid out so people can actually see what you do."],
   ["Get better quote requests", "A short form that works on a phone, asking for the details you actually need."],
   ["Work properly on every phone", "Most people will find you on a phone. That's where we start, not where we compromise."],
-  ["Help nearby customers find you", "The local search basics set up properly, so the people down the road see you."],
+  ["Be easier to find", "We set up the technical foundations that help search engines discover and understand your site — sitemaps, metadata, structured data, and Search Console."],
   ["Have someone there afterwards", "When your prices change or you add a service, you have someone to call."],
 ];
 

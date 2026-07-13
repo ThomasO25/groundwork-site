@@ -66,7 +66,7 @@ Anything you leave blank is **hidden** — never faked. Fill in a field and that
 | What | Where | Effect |
 | --- | --- | --- |
 | Phone + email | `contact` | Turns on every call button, the mobile call bar, footer contact |
-| Your name, photo, bio | `founder` | Turns the "who you'll work with" section into a real founder card |
+| Your photo + bio | `founder` | Name (Thomas Olsen) and location (Long Island, NY) are already set. A photo + bio turn the section into a full founder card |
 | Region + service areas | `primaryRegion`, `serviceAreas` | Adds your area to the hero, footer, contact page |
 | Legal entity name | `legalName` | **Only if an LLC really exists.** Blank = no "LLC" shown anywhere |
 

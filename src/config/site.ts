@@ -93,7 +93,8 @@ export const site: SiteConfig = {
   // replace it with the real business name (see OWNER_CONTENT_REQUIRED.md).
   name: "Groundwork",
   legalName: "", // Only set if a legal entity exists. Empty = no "LLC" shown.
-  tagline: "Websites that turn local searches into booked jobs.",
+  // No implied guarantee of rankings, leads, or revenue anywhere in the copy.
+  tagline: "Professional websites for contractors and local service businesses.",
   description:
     "We design fast, trustworthy websites and lead systems for local service businesses — built to get you more calls, quotes, and booked work.",
 
@@ -130,10 +131,14 @@ export const site: SiteConfig = {
   // is replaced by an honest "you work directly with your builder" note that
   // claims no identity, photo, or history.
   founder: {
-    name: "", // e.g. "Alex Rivera"
-    photo: "", // e.g. "/founder.jpg" (drop the file in /public)
-    bio: "", // 2–4 real sentences. Never invent a backstory.
-    location: "", // e.g. "Tampa, FL"
+    // Supplied by the owner.
+    name: "Thomas Olsen",
+    location: "Long Island, New York",
+    // STILL TO BE SUPPLIED — deliberately blank. Nothing here is invented.
+    // With no bio, the founder section shows the (true) direct-relationship copy
+    // and Thomas's name and location — but no made-up backstory.
+    bio: "",
+    photo: "", // e.g. "/founder.jpg" — drop the file in /public
     phoneDisplay: "",
     phoneHref: "",
     email: "",
@@ -164,8 +169,9 @@ export const siteStatus = {
   hasServiceAreas: site.serviceAreas.length > 0,
   hasLegalName: Boolean(site.legalName),
   hasRegion: Boolean(site.primaryRegion),
-  /** A named founder exists → render the real founder card. */
+  /** A named founder exists → show the name. A bio is separate and optional. */
   hasFounder: Boolean(site.founder.name),
+  hasFounderBio: Boolean(site.founder.bio),
   hasFounderPhoto: Boolean(site.founder.photo),
   hasFounderPhone: Boolean(site.founder.phoneHref && site.founder.phoneDisplay),
   hasFounderEmail: Boolean(site.founder.email),

@@ -8,7 +8,7 @@ import { buildMetadata } from "@/lib/seo";
 export const metadata = buildMetadata({
   title: "Services & Pricing for Local Service Businesses",
   description:
-    "Custom websites and lead systems for contractors, tint shops, marine, gyms, restaurants, and local pros. From a fast Website Launch to a full Lead System.",
+    "Websites and lead systems for contractors and local service businesses. Starter Sites from $750, Business Websites from $1,500, Growth Websites from $2,500, and custom-quoted builds.",
   path: "/services",
 });
 
@@ -21,12 +21,13 @@ export default function ServicesPage() {
           <h1 className="mt-3 text-display-lg text-ink">Websites and systems that bring in work</h1>
           <p className="mt-5 text-lg leading-relaxed text-steel">
             Every project is designed and built for your business and your customers — never a generic
-            template. Most businesses start with a Website Launch; the other two exist for when you outgrow
-            it.
+            template. Most established local businesses land on the Business Website; the Starter Site
+            exists for a smaller budget, and custom builds for when a website isn&apos;t enough.
           </p>
           <p className="mt-5 leading-relaxed text-steel">
-            <strong className="font-semibold text-ink">Not sure which one fits?</strong> Tell us about your
-            business and we&apos;ll recommend the simplest option that does the job.
+            <strong className="font-semibold text-ink">Not sure which option fits?</strong> Tell us about
+            your business and we&apos;ll recommend the simplest option that does the job. You don&apos;t
+            need to choose a package before getting in touch.
           </p>
         </div>
       </Section>
@@ -46,7 +47,6 @@ export default function ServicesPage() {
                   <div>
                     <dt className="text-xs font-medium text-steel">Price</dt>
                     <dd className="font-display text-2xl font-extrabold text-ink">{s.priceFrom}</dd>
-                    {s.paymentPlan ? <dd className="text-sm font-medium text-ink">{s.paymentPlan}</dd> : null}
                     {s.care ? <dd className="mt-1 text-sm text-steel">{s.care}</dd> : null}
                     {s.priceBasis ? (
                       <dd className="mt-2 text-xs leading-relaxed text-steel">{s.priceBasis}</dd>

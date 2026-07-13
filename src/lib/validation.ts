@@ -39,6 +39,12 @@ export const quoteSchema = z
       .min(5, "Tell us a little about what you need.")
       .max(2000),
 
+    /**
+     * Optional service interest. Describes the SITUATION, not a package — nobody
+     * has to pick a price tier before speaking to us.
+     */
+    interest: z.string().trim().max(80).optional().or(z.literal("")),
+
     // --- Optional extras (progressive step 2) --------------------------------
     industry: z.string().trim().max(60).optional().or(z.literal("")),
     budget: z.string().trim().max(40).optional().or(z.literal("")),

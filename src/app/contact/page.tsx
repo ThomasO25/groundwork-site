@@ -1,4 +1,4 @@
-import { Phone, Mail, MapPin, Clock, ExternalLink } from "lucide-react";
+import { Phone, Mail, MapPin, Clock, ExternalLink, Check } from "lucide-react";
 import { QuoteForm } from "@/components/forms/quote-form";
 import { Section } from "@/components/ui/section";
 import { site, siteStatus } from "@/config/site";
@@ -10,6 +10,14 @@ export const metadata = buildMetadata({
   path: "/contact",
 });
 
+/** What the free website plan actually delivers. Kept in sync with the homepage. */
+const planIncludes = [
+  "A recommendation for what your website should do",
+  "The scope we'd suggest, and the pages or features that matter",
+  "Which service level fits — and a starting or estimated price",
+  "The next steps we'd recommend, whether or not you hire us",
+];
+
 export default function ContactPage() {
   const showAreaCard = siteStatus.hasServiceAreas || siteStatus.hasRegion;
 
@@ -20,9 +28,8 @@ export default function ContactPage() {
           <span className="eyebrow">Free website plan</span>
           <h1 className="mt-4 text-display-lg text-ink">Tell us about your business</h1>
           <p className="mt-5 text-lg leading-relaxed text-steel">
-            We&apos;ll send you a short, practical plan: what your website should do, what it would
-            include, and what it costs. It&apos;s free, there&apos;s no obligation, and the plan is yours
-            to keep either way.
+            We&apos;ll review your situation and send you a short, written plan. It&apos;s free,
+            there&apos;s no obligation, and it&apos;s yours to keep either way.
             {siteStatus.hasPhone ? " Prefer to talk? Call us directly." : ""}
           </p>
         </div>
@@ -33,13 +40,33 @@ export default function ContactPage() {
           <QuoteForm />
 
           <aside className="space-y-6 lg:sticky lg:top-28">
-            {/* Reassurance: nobody should feel unqualified to fill this in. */}
+            {/* Exactly what the free plan is — and, just as importantly, what it isn't. */}
+            <div className="rounded-lg border border-line bg-surface p-6 shadow-soft">
+              <h2 className="font-display text-lg font-bold text-ink">What you&apos;ll actually get</h2>
+              <p className="mt-3 leading-relaxed text-steel">
+                We&apos;ll review what you send and write back with:
+              </p>
+              <ul className="mt-4 space-y-2.5">
+                {planIncludes.map((item) => (
+                  <li key={item} className="flex items-start gap-2.5">
+                    <Check className="mt-1 h-4 w-4 shrink-0 text-gold-deep" aria-hidden="true" />
+                    <span className="leading-relaxed text-ink">{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-5 border-t border-line pt-4 text-sm leading-relaxed text-steel">
+                It&apos;s honest advice, written down — not free labour. So it isn&apos;t a mockup, a
+                finished design, an SEO audit, or a full strategy document.
+              </p>
+            </div>
+
+            {/* Nobody should feel unqualified to fill the form in. */}
             <div className="rounded-lg border border-line bg-concrete/70 p-6">
               <h2 className="font-display text-lg font-bold text-ink">You don&apos;t need to know the technical stuff</h2>
               <p className="mt-3 leading-relaxed text-steel">
-                You don&apos;t need to know page counts, platforms, or technical details. Tell us about the
-                business and what you want the website to help with — that&apos;s genuinely enough for us
-                to work from.
+                You don&apos;t need to know page counts, platforms, or technical details — and you
+                don&apos;t need to pick a package. Tell us about the business and what you want the website
+                to help with. That&apos;s genuinely enough.
               </p>
             </div>
 

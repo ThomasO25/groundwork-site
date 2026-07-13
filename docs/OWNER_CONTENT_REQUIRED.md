@@ -22,12 +22,12 @@ card with a photo — **this is the single highest-impact item on this list.**
 
 | Field | What's needed | Status |
 | --- | --- | --- |
-| `founder.name` | **[BLOCKER]** Real first + last name of the person clients deal with. | Empty → generic section |
-| `founder.photo` | **[BLOCKER]** A real photo of that person. Save to `/public/founder.jpg`, then set `"/founder.jpg"`. Head-and-shoulders, decent light, no stock photos. Also used on the About page. | Empty → no photo shown |
-| `founder.bio` | **[BLOCKER]** 2–4 true sentences: who you are, how you got here, why local businesses. **Do not invent a backstory** — write it yourself or send bullet points. | Empty |
-| `founder.location` | _[optional]_ e.g. `"Tampa, FL"` | Empty |
-| `founder.phoneDisplay` + `founder.phoneHref` | _[optional]_ A direct line, shown only in the founder card. | Empty |
-| `founder.email` | _[optional]_ A direct email for the founder card. | Empty |
+| `founder.name` | Thomas Olsen | ✅ **Done** |
+| `founder.location` | Long Island, New York | ✅ **Done** |
+| `founder.bio` | **[BLOCKER]** 2–4 true sentences: who you are, how you got here, why local businesses. **Nothing has been invented** — send bullet points and they'll be written up, or write it yourself. Until then the section shows your name and the (true) direct-relationship copy, with no backstory. | ⬜ **Needed** |
+| `founder.photo` | **[BLOCKER]** A real photo of you. Save to `/public/founder.jpg`, then set `"/founder.jpg"`. Head-and-shoulders, decent light, no stock photos. Also used on the About page. | ⬜ **Needed** |
+| `founder.phoneDisplay` + `founder.phoneHref` | _[optional]_ A direct line, shown only in the founder card. | ⬜ |
+| `founder.email` | _[optional]_ A direct email for the founder card. | ⬜ |
 
 ---
 

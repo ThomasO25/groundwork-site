@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { Check, ArrowRight, Phone } from "lucide-react";
+import { Check, Minus, ArrowRight, Phone } from "lucide-react";
 import { services, getService } from "@/content/services";
 import { site, siteStatus, legalDisplayName } from "@/config/site";
 import { Section } from "@/components/ui/section";
@@ -27,14 +27,34 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
   const service = getService(params.slug);
   if (!service) notFound();
 
+  // Starting prices are MINIMUMS, so they are modelled as a price specification
+  // with minPrice — never as a fixed `price`. Custom builds emit no offer at all:
+  // a custom quote must not be represented as a fixed-price product.
+  const startingPrice = service.priceFrom.match(/\$([\d,]+)/)?.[1]?.replace(/,/g, "");
+
   const serviceJsonLd = {
     "@context": "https://schema.org",
     "@type": "Service",
     name: service.name,
     description: service.summary,
+    serviceType: "Website design and development",
     provider: { "@type": "ProfessionalService", name: legalDisplayName, url: siteUrl },
     ...(siteStatus.hasServiceAreas
       ? { areaServed: site.serviceAreas.map((name) => ({ "@type": "City", name })) }
+      : {}),
+    ...(startingPrice
+      ? {
+          offers: {
+            "@type": "Offer",
+            url: `${siteUrl}/services/${service.slug}`,
+            priceSpecification: {
+              "@type": "PriceSpecification",
+              minPrice: startingPrice,
+              priceCurrency: "USD",
+              valueAddedTaxIncluded: false,
+            },
+          },
+        }
       : {}),
   };
 
@@ -59,9 +79,6 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
           <div className="rounded-lg border border-line bg-surface p-7 shadow-soft">
             <p className="text-xs font-medium text-steel">Price</p>
             <p className="mt-1 font-display text-3xl font-extrabold text-ink">{service.priceFrom}</p>
-            {service.paymentPlan ? (
-              <p className="mt-1 text-sm font-medium text-ink">{service.paymentPlan}</p>
-            ) : null}
             {service.care ? <p className="mt-1 text-sm text-steel">{service.care}</p> : null}
             {service.priceBasis ? (
               <p className="mt-3 text-xs leading-relaxed text-steel">{service.priceBasis}</p>
@@ -100,6 +117,25 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                 </li>
               ))}
             </ul>
+
+            {/* Stated plainly, so the package can't quietly grow into a bigger one. */}
+            {service.notIncluded ? (
+              <div className="mt-8 rounded-lg border border-line bg-surface p-6">
+                <h3 className="font-display text-lg font-bold text-ink">Kept deliberately simple</h3>
+                <p className="mt-2 text-sm leading-relaxed text-steel">
+                  This is what keeps the price where it is. If you need any of the below, the Business
+                  Website or a custom build is the honest answer — and we&apos;ll tell you so.
+                </p>
+                <ul className="mt-4 space-y-2.5">
+                  {service.notIncluded.map((f) => (
+                    <li key={f} className="flex gap-2.5 text-sm text-steel">
+                      <Minus className="mt-1 h-3.5 w-3.5 shrink-0 text-steel/60" aria-hidden="true" />
+                      <span className="leading-relaxed">{f}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ) : null}
           </div>
           <div>
             <h2 className="text-display-md text-ink">What you can expect</h2>

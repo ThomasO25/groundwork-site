@@ -15,6 +15,18 @@ type Errors = Partial<Record<string, string>>;
 // "Not sure yet" first — nobody is asked to commit to a spend before we've talked.
 const budgets = ["Not sure yet", "$1,500–$2,500", "$2,500–$5,000", "$5,000+", "Prefer not to say"];
 const timelines = ["Not sure yet", "As soon as possible", "In the next 1–3 months", "Just researching"];
+// Situation-based, NOT package-based. A visitor never has to choose a price tier
+// in order to get in touch.
+const interests = [
+  "I need my first website",
+  "I want to replace or improve my website",
+  "I need more pages or landing pages",
+  "I need online booking or payments",
+  "I need a custom system or integration",
+  "I need ongoing website help",
+  "I'm not sure yet",
+];
+
 const industries = [
   "Contractor / Home service",
   "Window tinting",
@@ -252,6 +264,20 @@ export function QuoteForm() {
           inputMode="url"
           placeholder="If you have one — or a Facebook page"
         />
+      </div>
+
+      <div className="mt-5">
+        <Label htmlFor="interest">
+          What brings you here? <span className="font-normal text-steel">(optional)</span>
+        </Label>
+        <Select id="interest" name="interest" defaultValue="">
+          <option value="">Choose one — or skip it</option>
+          {interests.map((o) => (
+            <option key={o} value={o}>
+              {o}
+            </option>
+          ))}
+        </Select>
       </div>
 
       <div className="mt-5">

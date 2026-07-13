@@ -14,7 +14,7 @@ import { site, siteStatus } from "@/config/site";
 const included: [string, string][] = [
   ["Built for phones first", "Most of your customers will find you on a phone. That's where we start."],
   ["Made to get calls", "Tap-to-call and a short quote form on every page."],
-  ["Set up to be found", "The local search basics, done properly."],
+  ["Built to be discoverable", "The technical foundations that help search engines find and understand your site."],
   ["Yours to keep", "The site, the domain, the content. No lock-in."],
 ];
 
